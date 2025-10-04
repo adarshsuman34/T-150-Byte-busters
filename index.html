@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumniHub - Modern Alumni Management</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Heroicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/24/outline/index.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
+
+    <!-- Sidebar -->
+    <div class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-800/90 backdrop-blur-xl border-r border-slate-700/50 transform -translate-x-full transition-transform duration-300 ease-in-out" id="sidebar">
+        <div class="flex items-center justify-center h-16 px-4 border-b border-slate-700/50">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">AH</span>
+                </div>
+                <span class="text-xl font-bold text-white">AlumniHub</span>
+            </div>
+        </div>
+        
+        <nav class="mt-8 px-4">
+            <div class="space-y-2">
+                <a href="#" class="flex items-center px-4 py-3 text-white bg-purple-600/20 rounded-xl border border-purple-500/30">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="alumni.html" class="flex items-center px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-xl transition-colors">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                    </svg>
+                    Alumni
+                </a>
+                <a href="mentors.html" class="flex items-center px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-xl transition-colors">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                    Mentors
+                </a>
+                <a href="analytics.html" class="flex items-center px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-xl transition-colors">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    Analytics
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-0 transition-all duration-300 ease-in-out" id="main-content">
+        <!-- Top Navigation -->
+        <header class="bg-slate-800/50 backdrop-blur-xl border-b border-slate-700/50 px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <button id="sidebar-toggle" class="text-slate-300 hover:text-white p-2 rounded-lg hover:bg-slate-700/50 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <h1 class="text-2xl font-bold text-white">Dashboard</h1>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <div class="flex items-center space-x-2 px-4 py-2 bg-slate-700/50 rounded-lg border border-slate-600/50">
+                            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                            <span class="text-sm text-slate-300">System Status:</span>
+                            <span id="user-id-display" class="text-sm font-medium text-green-400">Online</span>
+                        </div>
+                    </div>
+                    
+                    <button id="add-alumni-btn" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-purple-500/25">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        <span>Add Alumni</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <main class="p-6">
+            <!-- Welcome Section -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-white mb-2">Welcome back! 👋</h2>
+                <p class="text-slate-400">Here's what's happening with your alumni network today.</p>
+            </div>
+
+            <!-- Key Metrics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                
+                <div class="bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-xl border border-blue-500/30 rounded-2xl p-6 hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-blue-300 text-sm font-medium mb-2">Total Alumni</p>
+                            <p id="metric-total-alumni" class="text-3xl font-bold text-white">0</p>
+                            <p class="text-blue-400 text-xs mt-1">+12% from last month</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-500/20 to-purple-600/20 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-6 hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-purple-300 text-sm font-medium mb-2">Active Mentors</p>
+                            <p id="metric-mentors" class="text-3xl font-bold text-white">0</p>
+                            <p class="text-purple-400 text-xs mt-1">+8% from last month</p>
+                        </div>
+                        <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-500/20 to-green-600/20 backdrop-blur-xl border border-green-500/30 rounded-2xl p-6 hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-green-300 text-sm font-medium mb-2">Connections</p>
+                            <p class="text-3xl font-bold text-white">24</p>
+                            <p class="text-green-400 text-xs mt-1">+15% from last month</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-500/20 to-orange-600/20 backdrop-blur-xl border border-orange-500/30 rounded-2xl p-6 hover:scale-105 transition-all duration-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-orange-300 text-sm font-medium mb-2">System Status</p>
+                            <p id="metric-ready-time" class="text-lg font-bold text-white">Initializing...</p>
+                            <p class="text-orange-400 text-xs mt-1">Database ready</p>
+                        </div>
+                        <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alumni Directory Section -->
+            <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-700/50">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-semibold text-white">Alumni Directory</h2>
+                        <div class="flex items-center space-x-2">
+                            <div class="relative">
+                                <input type="text" placeholder="Search alumni..." class="bg-slate-700/50 border border-slate-600/50 rounded-lg px-4 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50">
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-slate-700/30">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Alumni</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Graduation</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Field & Company</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Contact</th>
+                                <th class="px-6 py-4 text-center text-xs font-medium text-slate-300 uppercase tracking-wider">Mentor</th>
+                                <th class="px-6 py-4 text-center text-xs font-medium text-slate-300 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                        <tbody id="alumni-table-body" class="divide-y divide-slate-700/50">
+                        <!-- Data will be inserted here by JavaScript -->
+                            <tr>
+                                <td colspan="6" class="text-center py-12 text-slate-400">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-16 h-16 bg-slate-700/50 rounded-full flex items-center justify-center mb-4">
+                                            <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-lg font-medium">Loading alumni data...</p>
+                                        <p class="text-sm text-slate-500 mt-1">Please wait while we fetch the latest information</p>
+                                    </div>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+                </div>
+                
+                <div id="empty-state" class="text-center py-16 hidden">
+                    <div class="w-24 h-24 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-12 h-12 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-300 mb-2">No Alumni Found</h3>
+                    <p class="text-slate-500 mb-6">Start building your alumni network by adding the first record.</p>
+                    <button id="empty-add-alumni" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200">
+                        Add First Alumni
+                    </button>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Modal for Adding New Alumni -->
+    <div id="add-alumni-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 z-50 transition-opacity duration-300">
+        <div class="bg-slate-800/95 backdrop-blur-xl border border-slate-700/50 w-full max-w-2xl rounded-2xl shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+            <div class="px-8 py-6 border-b border-slate-700/50">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Add New Alumni</h3>
+                            <p class="text-slate-400 text-sm">Create a new alumni profile</p>
+                        </div>
+                    </div>
+                    <button class="text-slate-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-slate-700/50" id="close-modal-btn">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                </button>
+                </div>
+            </div>
+            
+            <form id="new-alumni-form" class="p-8 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                    <label for="alum-name" class="block text-sm font-medium text-slate-300">Full Name</label>
+                        <input type="text" id="alum-name" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="Enter full name">
+                </div>
+                    <div class="space-y-2">
+                    <label for="alum-year" class="block text-sm font-medium text-slate-300">Graduation Year</label>
+                        <input type="number" id="alum-year" required min="1950" max="2099" class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="2023">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                    <label for="alum-field" class="block text-sm font-medium text-slate-300">Field/Major</label>
+                        <input type="text" id="alum-field" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="Computer Science">
+                </div>
+                    <div class="space-y-2">
+                    <label for="alum-company" class="block text-sm font-medium text-slate-300">Current Company</label>
+                        <input type="text" id="alum-company" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="Tech Corp">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                    <label for="alum-email" class="block text-sm font-medium text-slate-300">Contact Email</label>
+                        <input type="email" id="alum-email" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="alumni@example.com">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="alum-mobile" class="block text-sm font-medium text-slate-300">Mobile Number</label>
+                        <input type="tel" id="alum-mobile" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="+1 (555) 123-4567">
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label for="alum-linkedin" class="block text-sm font-medium text-slate-300">LinkedIn Profile</label>
+                    <input type="url" id="alum-linkedin" class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="https://linkedin.com/in/username">
+                </div>
+                
+                <div class="flex items-center p-4 bg-slate-700/30 rounded-xl border border-slate-600/30">
+                    <input type="checkbox" id="alum-mentor" class="h-5 w-5 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500 focus:ring-2 transition-all duration-200">
+                    <label for="alum-mentor" class="ml-3 text-sm text-slate-300">
+                        Available as a Mentor
+                    </label>
+                </div>
+                
+                <div id="modal-message" class="text-sm text-center text-red-400 hidden message-slide"></div>
+                
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" id="cancel-btn" class="flex-1 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-200">
+                        Cancel
+                    </button>
+                    <button type="submit" id="submit-alumni-btn" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-purple-500/25">
+                        Create Alumni Profile
+                </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- IndexedDB Logic (Native Browser Database) -->
+    <script src="app.js"></script>
+</body>
+</html>

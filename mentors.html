@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumniHub | Mentor Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-900 text-white min-h-screen">
+    <nav class="bg-slate-800/80 backdrop-blur border-b border-slate-700/60 shadow-lg">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white font-bold">AH</div>
+                <div>
+                    <p class="text-sm text-purple-300 uppercase tracking-wide">AlumniHub</p>
+                    <h1 class="text-xl font-semibold">Mentor Network</h1>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="px-4 py-2 rounded-lg bg-slate-700/60 hover:bg-slate-600/60 transition">Dashboard</a>
+                <a href="alumni.html" class="px-4 py-2 rounded-lg bg-slate-700/60 hover:bg-slate-600/60 transition">Alumni Directory</a>
+                <button id="open-modal-nav" class="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    <span>Add Mentor</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-10">
+        <section class="mb-10">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-3xl font-bold">Active Mentors</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl">Explore alumni who are currently available for mentorship. Filter by expertise or graduation year to find the right match for students and peers.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 w-full lg:w-auto">
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4">
+                        <p class="text-sm text-slate-400">Total Mentors</p>
+                        <p id="metric-total-mentors" class="text-2xl font-semibold mt-1">0</p>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4">
+                        <p class="text-sm text-slate-400">Recently Updated</p>
+                        <p id="metric-recent" class="text-2xl font-semibold mt-1">0</p>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4">
+                        <p class="text-sm text-slate-400">Last Sync</p>
+                        <p id="metric-sync-time" class="text-sm mt-1 text-slate-300">--:--</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <div class="flex flex-col lg:flex-row gap-4 lg:items-center justify-between">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="relative">
+                        <input id="search-mentor" type="text" placeholder="Search mentors by name, field, or company" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50" />
+                        <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5a7 7 0 100 14 7 7 0 000-14zm0 0l6 6"></path>
+                        </svg>
+                    </div>
+                    <select id="filter-field" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50">
+                        <option value="all">All Disciplines</option>
+                    </select>
+                    <select id="filter-year" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50">
+                        <option value="all">All Graduations</option>
+                    </select>
+                </div>
+                <button id="clear-filters" class="px-4 py-2 rounded-lg bg-slate-700/60 hover:bg-slate-600/60 transition">Reset Filters</button>
+            </div>
+        </section>
+
+        <section id="mentors-list" class="grid gap-6 lg:grid-cols-2"></section>
+
+        <div id="empty-results" class="hidden text-center py-16 border border-dashed border-slate-700 rounded-2xl">
+            <div class="flex flex-col items-center space-y-4">
+                <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center">
+                    <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 20l-3.5-2-3.5 2V4h7z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold">No mentors match the current filters</h3>
+                    <p class="text-slate-400 mt-2">Try a different search term or clear filters to see all available mentors.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="add-alumni-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 z-50 transition-opacity duration-300">
+        <div class="bg-slate-800/95 backdrop-blur-xl border border-slate-700/50 w-full max-w-2xl rounded-2xl shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+            <div class="px-8 py-6 border-b border-slate-700/50 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Add New Mentor</h3>
+                        <p class="text-slate-400 text-sm">Create a mentor profile to support learners.</p>
+                    </div>
+                </div>
+                <button class="text-slate-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-slate-700/50" id="close-modal-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="new-alumni-form" class="p-8 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label for="alum-name" class="block text-sm font-medium text-slate-300">Full Name</label>
+                        <input type="text" id="alum-name" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="Enter full name">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="alum-year" class="block text-sm font-medium text-slate-300">Graduation Year</label>
+                        <input type="number" id="alum-year" required min="1950" max="2099" class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="2023">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label for="alum-field" class="block text-sm font-medium text-slate-300">Field/Major</label>
+                        <input type="text" id="alum-field" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="Computer Science">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="alum-company" class="block text-sm font-medium text-slate-300">Current Company</label>
+                        <input type="text" id="alum-company" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="Tech Corp">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label for="alum-email" class="block text-sm font-medium text-slate-300">Contact Email</label>
+                        <input type="email" id="alum-email" required class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="mentor@example.com">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="alum-mobile" class="block text-sm font-medium text-slate-300">Mobile Number</label>
+                        <input type="tel" id="alum-mobile" class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="+1 (555) 123-4567">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="alum-linkedin" class="block text-sm font-medium text-slate-300">LinkedIn Profile</label>
+                    <input type="url" id="alum-linkedin" class="w-full bg-slate-700/50 border border-slate-600/50 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-200" placeholder="https://linkedin.com/in/username">
+                </div>
+                <div class="flex items-center p-4 bg-purple-700/20 rounded-xl border border-purple-500/30">
+                    <input type="checkbox" id="alum-mentor" class="h-5 w-5 text-purple-600 bg-slate-700 border-slate-600 rounded focus:ring-purple-500 focus:ring-2 transition-all duration-200" checked disabled>
+                    <label for="alum-mentor" class="ml-3 text-sm text-slate-300">This profile will appear in the mentor directory.</label>
+                </div>
+                <div id="modal-message" class="text-sm text-center text-red-400 hidden message-slide"></div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" id="cancel-btn" class="flex-1 bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-200">Cancel</button>
+                    <button type="submit" id="submit-alumni-btn" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-purple-500/25">Create Mentor Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="mentors.js"></script>
+</body>
+</html>
